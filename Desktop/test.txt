@@ -1,0 +1,30 @@
+[root@localhost src]# cd /usr/local/src/
+[root@localhost src]# wget http://mirror.neu.edu.cn/mysql/Downloads/MySQL-5.6/MySQL-server-5.6.28-1.el6.x86_64.rpm
+[root@localhost src]# wget http://mirror.neu.edu.cn/mysql/Downloads/MySQL-5.6/MySQL-devel-5.6.28-1.el6.x86_64.rpm
+[root@localhost src]# wget http://mirror.neu.edu.cn/mysql/Downloads/MySQL-5.6/MySQL-client-5.6.28-1.el6.x86_64.rpm
+[root@localhost src]# ll
+total 76224
+-rw-r--r--. 1 root root 18633576 Jan  6  2016 MySQL-client-5.6.28-1.el6.x86_64.rpm
+-rw-r--r--. 1 root root  3421028 Jan  6  2016 MySQL-devel-5.6.28-1.el6.x86_64.rpm
+-rw-r--r--. 1 root root 55991256 Jan  6  2016 MySQL-server-5.6.28-1.el6.x86_64.rpm
+ 
+安装mysql
+ 
+[root@localhost src]# rpm -ivh MySQL-server-5.6.28-1.el6.x86_64.rpm 
+[root@localhost src]# rpm -ivh MySQL-client-5.6.28-1.el6.x86_64.rpm
+[root@localhost src]# rpm -ivh MySQL-devel-5.6.28-1.el6.x86_64.rpm
+[root@localhost src]# cp /usr/shaare/mysql/my-default.cnf /etc/my.cnf
+ 
+groupadd mysql和useradd -r -g mysql mysql
+
+初始化MySQL及设置密码
+ mysql-server  mysql-common mysql-client 三个rpm是必须的
+
+ /usr/bin/mysql_install_db --user=mysql --basedir=/usr/local/mysql/ --datadir=/home/mysql_data
+[root@localhost src]# service mysql start
+Starting MySQL. SUCCESS!
+[root@localhost src]# cat /root/.mysql_secret
+
+修改密码：
+set global validate_password_policy=0;
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'zy354892';
