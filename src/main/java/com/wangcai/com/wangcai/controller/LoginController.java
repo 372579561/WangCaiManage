@@ -42,6 +42,25 @@ public class LoginController
         return "fail";
     }
 
+    @RequestMapping(value="/register",method = RequestMethod.POST)
+    @ResponseBody
+    public String register(User user, HttpSession session){
+        user=userRepository.save(user);
+        if(user!=null){
+            return "success";
+        }
+        return "fail";
+    }
+
+    @RequestMapping(value="/register/remote",method = RequestMethod.POST)
+    @ResponseBody
+    public String remote(String userName, HttpSession session){
+        User user=userRepository.findByUserName(userName);
+        if(user==null){
+            return "success";
+        }
+        return "fail";
+    }
     @RequestMapping("list")
     @ResponseBody
     public List<User> list(){
