@@ -16,8 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("login")
-public class LoginController
-{
+public class LoginController {
 
     private UserRepository userRepository;
 
@@ -31,39 +30,40 @@ public class LoginController
         return "loginPage";
     }
 
-    @RequestMapping(value="/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String login(User user, HttpSession session){
-        User dataUser=userRepository.findByUserName(user.getUserName());
-        if(dataUser.getPassword().equals(user.getPassword())){
-            session.setAttribute(ControllerConstants.USER_LOGIN,dataUser.getUserName());
+    public String login(User user, HttpSession session) {
+        User dataUser = userRepository.findByUserName(user.getUserName());
+        if (dataUser != null && dataUser.getPassword().equals(user.getPassword())) {
+            session.setAttribute(ControllerConstants.USER_LOGIN, dataUser.getUserName());
             return "success";
         }
         return "fail";
     }
 
-    @RequestMapping(value="/register",method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public String register(User user, HttpSession session){
-        user=userRepository.save(user);
-        if(user!=null){
+    public String register(User user, HttpSession session) {
+        user = userRepository.save(user);
+        if (user != null) {
             return "success";
         }
         return "fail";
     }
 
-    @RequestMapping(value="/register/remote",method = RequestMethod.POST)
+    @RequestMapping(value = "/register/remote", method = RequestMethod.POST)
     @ResponseBody
-    public String remote(String userName, HttpSession session){
-        User user=userRepository.findByUserName(userName);
-        if(user==null){
+    public String remote(String userName, HttpSession session) {
+        User user = userRepository.findByUserName(userName);
+        if (user == null) {
             return "success";
         }
         return "fail";
     }
+
     @RequestMapping("list")
     @ResponseBody
-    public List<User> list(){
+    public List<User> list() {
         return userRepository.findAll();
     }
 }
