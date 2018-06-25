@@ -1,4 +1,4 @@
-package com.wangcai.wangcai;
+package com.wangcai;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
