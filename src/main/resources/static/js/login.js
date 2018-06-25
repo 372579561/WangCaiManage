@@ -6,8 +6,12 @@ function fnSuccess(msg) {
         if (vm.checked)
         {
             SaveCookie();
-            //window.location.href = "index.html";
-            alert("login success");
+            window.location.href = "/home/homePage";
+            $('home')[0].click();
+            // $.ajax({
+            //     type:"get",
+            //     url:"/home/homePage"
+            // });
         }
     }
     else
@@ -26,6 +30,49 @@ function SaveCookie(){
         $.cookie("password", str_password, { expires: 7 });
 }
 
+
+function UserBlur(){
+    if (vm.ifRegister === true){
+
+
+    var u = vm.userName;
+    var params = {"userName":u};
+    $.ajax({
+        type:"post",
+        url:"/login/register/remote",
+        data:params,
+        //dataType:"json",
+        timeout:3000,
+        success:function (msg) {
+            if (msg !== "success"){
+                //$.validate()
+                alert("用户名重复，请重新输入");
+                vm.disable = true;
+            }
+            else{
+                vm.disable = false;
+                console.log("success_user");
+            }
+
+        },
+        error:function (msg) {
+            console.log(msg.toString());
+        }
+    });
+    }
+}
+
+//注册
+function Register(){
+    vm.userName = "";
+    vm.pwd = "";
+    vm.checked = false;
+    vm.ifRegister = true;
+    vm.disable = true;
+    vm.RegORLogin = "注册";
+
+}
+
 window.onload = function () {
 
     window.vm = new Vue({
@@ -34,7 +81,11 @@ window.onload = function () {
             showMes:false,
             userName:"",
             pwd:"",
-            checked:false
+            pwd2:"",
+            checked:false,
+            ifRegister:false,
+            RegORLogin:"登录",
+            disable:false
         },
         methods:{
             submit:function () {
@@ -42,10 +93,18 @@ window.onload = function () {
                 var p = this.pwd; //密码
                 var c = this.checked; //是否记住用户名
                 var params = {"userName":u,"password":p};
+                var url;
+                if (this.ifRegister){
+                    url = "/login/register";
+                }
+                else
+                {
+                    url = "/login/login";
+                }
 
                 $.ajax({
                     type:"post",
-                    url:"/login/login",
+                    url:url,
                     data:params,
                     timeout:3000,
                     success:function (msg) {
