@@ -16,6 +16,8 @@ public class HomePageImages {
 
     private Integer status;
 
+    private String hyperLink;
+
     public Integer getId() {
         return id;
     }
@@ -38,5 +40,13 @@ public class HomePageImages {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getHyperLink() {
+        return hyperLink;
+    }
+
+    public void setHyperLink(String hyperLink) {
+        this.hyperLink = hyperLink;
     }
 }

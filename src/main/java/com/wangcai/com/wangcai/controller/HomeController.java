@@ -22,9 +22,6 @@ public class HomeController {
     @Value("${images.location}")
     private String location;
 
-    @Value("${images.HyperLink}")
-    private String hyperLink;
-
     private HomePageImagesRepository homePageImagesRepository;
 
     public HomeController(HomePageImagesRepository homePageImagesRepository) {
@@ -38,12 +35,11 @@ public class HomeController {
         List locations = new ArrayList();
         List hyperLinks = new ArrayList();
         for (HomePageImages homePageImage : homePageImages) {
-            locations.add(location+homePageImage.getImagesLocation());
-            hyperLinks.add(hyperLink+homePageImage.getImagesLocation());
+            locations.add(location + homePageImage.getImagesLocation());
+            hyperLinks.add(homePageImage.getHyperLink());
         }
         model.addAttribute(Constants.IMAGES_LOCATION, locations);
         model.addAttribute(Constants.IMAGES_HYPERLINK, hyperLinks);
-        System.out.println(locations);
         return "homePage";
     }
 }
