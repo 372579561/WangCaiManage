@@ -1,15 +1,13 @@
 package com.wangcai.com.wangcai.controller;
 
-import com.wangcai.com.wangcai.Constants.Constants;
+import com.wangcai.com.wangcai.constants.Constants;
 import com.wangcai.com.wangcai.bean.HomePageImages;
 import com.wangcai.com.wangcai.dao.HomePageImagesRepository;
-import com.wangcai.com.wangcai.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.wangcai.com.wangcai.controller;
 
-import com.wangcai.com.wangcai.Constants.Constants;
+import com.wangcai.com.wangcai.constants.Constants;
 import com.wangcai.com.wangcai.bean.User;
 import com.wangcai.com.wangcai.dao.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -32,7 +32,7 @@ public class LoginController {
     public String login(User user, HttpSession session) {
         User dataUser = userRepository.findByUserName(user.getUserName());
         if (dataUser != null && dataUser.getPassword().equals(user.getPassword())) {
-            session.setAttribute(Constants.USER_LOGIN, dataUser.getUserName());
+            session.setAttribute(Constants.USER_LOGIN, dataUser);
             return "success";
         }
         return "fail";
