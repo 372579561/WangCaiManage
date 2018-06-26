@@ -30,12 +30,16 @@ public class SessionFilter implements javax.servlet.Filter {
         User user = (User) session.getAttribute(Constants.USER_LOGIN);
         List<String> noFilter = new ArrayList<>();
         String uri = request.getRequestURI();
+        Boolean doFilter = true;
+        if (uri.contains("/js/") || uri.contains("/images/")||uri.contains("/css/")) {
+            doFilter = false;
+        }
         noFilter.add("/login/loginPage");
         noFilter.add("/login/login");
-        Boolean doFilter = true;
         for (String noF : noFilter) {
             if (uri.equals(noF)) {
                 doFilter = false;
+                break;
             }
         }
         if (doFilter) {
@@ -52,7 +56,7 @@ public class SessionFilter implements javax.servlet.Filter {
                 }
                 return;
             }
-        }else{
+        } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }
