@@ -8,10 +8,6 @@ function fnSuccess(msg) {
             SaveCookie();
             window.location.href = "/home/homePage";
             $('home')[0].click();
-            // $.ajax({
-            //     type:"get",
-            //     url:"/home/homePage"
-            // });
         }
     }
     else
