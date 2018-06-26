@@ -3,6 +3,7 @@ package com.wangcai.com.wangcai.controller;
 import com.wangcai.com.wangcai.constants.Constants;
 import com.wangcai.com.wangcai.bean.HomePageImages;
 import com.wangcai.com.wangcai.dao.HomePageImagesRepository;
+import com.wangcai.com.wangcai.vo.ImagesLocation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
@@ -36,8 +37,10 @@ public class HomeController {
             locations.add(location + homePageImage.getImagesLocation());
             hyperLinks.add(homePageImage.getHyperLink());
         }
-        model.addAttribute(Constants.IMAGES_LOCATION, locations);
-        model.addAttribute(Constants.IMAGES_HYPERLINK, hyperLinks);
+        ImagesLocation imagesLocation =new ImagesLocation();
+        imagesLocation.setImages_hyperlink(hyperLinks);
+        imagesLocation.setImages_location(locations);
+        model.addAttribute(Constants.IMAGES_LOCATION, imagesLocation);
         return "homePage";
     }
 }
