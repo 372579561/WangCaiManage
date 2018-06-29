@@ -1,4 +1,4 @@
-package com.wangcai.com.wangcai.vo;
+package com.wangcai.vo;
 
 import java.util.List;
 

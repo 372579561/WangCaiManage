@@ -1,14 +1,15 @@
-package com.wangcai.com.wangcai.controller;
+package com.wangcai.controller;
 
-import com.wangcai.com.wangcai.constants.Constants;
-import com.wangcai.com.wangcai.bean.User;
-import com.wangcai.com.wangcai.dao.UserRepository;
+import com.wangcai.model.User;
+import com.wangcai.constants.Constants;
+import com.wangcai.dao.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -33,6 +34,9 @@ public class LoginController {
         User dataUser = userRepository.findByUserName(user.getUserName());
         if (dataUser != null && dataUser.getPassword().equals(user.getPassword())) {
             session.setAttribute(Constants.USER_LOGIN, dataUser);
+            Date date = new Date();
+            dataUser.setLastTime(date);
+            userRepository.save(dataUser);
             return "success";
         }
         return "fail";
@@ -41,11 +45,18 @@ public class LoginController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public String register(User user, HttpSession session) {
-        user = userRepository.save(user);
-        if (user != null) {
-            return "success";
+        synchronized (this) {
+            if (userRepository.findByUserName(user.getUserName()) != null) {
+                return "fail";
+            }
+            user.setCreateTime(new Date());
+            user = userRepository.save(user);
+            if (user != null) {
+                return "success";
+            }
+            return "fail";
         }
-        return "fail";
+
     }
 
     @RequestMapping(value = "/register/remote", method = RequestMethod.POST)

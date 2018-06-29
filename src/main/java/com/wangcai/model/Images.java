@@ -1,12 +1,12 @@
-package com.wangcai.com.wangcai.bean;
+package com.wangcai.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="t_homepage_images")
-public class HomePageImages {
+@Entity(name="t_images")
+public class Images {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,8 @@ public class HomePageImages {
     private Integer status;
 
     private String hyperLink;
+
+    private String imagesType;
 
     public Integer getId() {
         return id;
@@ -48,5 +50,13 @@ public class HomePageImages {
 
     public void setHyperLink(String hyperLink) {
         this.hyperLink = hyperLink;
+    }
+
+    public String getImagesType() {
+        return imagesType;
+    }
+
+    public void setImagesType(String imagesType) {
+        this.imagesType = imagesType;
     }
 }

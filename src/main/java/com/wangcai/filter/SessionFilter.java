@@ -1,8 +1,7 @@
-package com.wangcai.com.wangcai.filter;
+package com.wangcai.filter;
 
-import com.wangcai.com.wangcai.bean.User;
-import com.wangcai.com.wangcai.constants.Constants;
-import org.apache.catalina.connector.Request;
+import com.wangcai.model.User;
+import com.wangcai.constants.Constants;
 import org.springframework.core.annotation.Order;
 
 import javax.servlet.*;

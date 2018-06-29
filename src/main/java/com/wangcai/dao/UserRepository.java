@@ -1,6 +1,6 @@
-package com.wangcai.com.wangcai.dao;
+package com.wangcai.dao;
 
-import com.wangcai.com.wangcai.bean.User;
+import com.wangcai.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

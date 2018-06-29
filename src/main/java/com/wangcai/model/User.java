@@ -1,7 +1,7 @@
-package com.wangcai.com.wangcai.bean;
+package com.wangcai.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity(name="t_user")
 public class User {
@@ -22,6 +22,8 @@ public class User {
     private Date createTime;
 
     private Date lastTime;
+
+    private Integer imagesId;
 
     public Integer getId() {
         return id;
@@ -85,5 +87,13 @@ public class User {
 
     public void setLastTime(Date lastTime) {
         this.lastTime = lastTime;
+    }
+
+    public Integer getImagesId() {
+        return imagesId;
+    }
+
+    public void setImagesId(Integer imagesId) {
+        this.imagesId = imagesId;
     }
 }

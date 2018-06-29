@@ -1,9 +1,9 @@
-package com.wangcai.com.wangcai.controller;
+package com.wangcai.controller;
 
-import com.wangcai.com.wangcai.constants.Constants;
-import com.wangcai.com.wangcai.bean.HomePageImages;
-import com.wangcai.com.wangcai.dao.HomePageImagesRepository;
-import com.wangcai.com.wangcai.vo.ImagesLocation;
+import com.wangcai.model.Images;
+import com.wangcai.constants.Constants;
+import com.wangcai.dao.ImagesRepository;
+import com.wangcai.vo.ImagesLocation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
@@ -21,19 +21,19 @@ public class HomeController {
     @Value("${images.location}")
     private String location;
 
-    private HomePageImagesRepository homePageImagesRepository;
+    private ImagesRepository imagesRepository;
 
-    public HomeController(HomePageImagesRepository homePageImagesRepository) {
+    public HomeController(ImagesRepository imagesRepository) {
         super();
-        this.homePageImagesRepository = homePageImagesRepository;
+        this.imagesRepository = imagesRepository;
     }
 
     @RequestMapping("/homePage")
     public String homePage(Model model) {
-        List<HomePageImages> homePageImages = homePageImagesRepository.findByStatus(1);
+        List<Images> homePageImages = imagesRepository.findByStatus(1);
         List locations = new ArrayList();
         List hyperLinks = new ArrayList();
-        for (HomePageImages homePageImage : homePageImages) {
+        for (Images homePageImage : homePageImages) {
             locations.add(location + homePageImage.getImagesLocation());
             hyperLinks.add(homePageImage.getHyperLink());
         }

@@ -1,4 +1,4 @@
-package com.wangcai.com.wangcai.constants;
+package com.wangcai.constants;
 
 public class Constants {
 
