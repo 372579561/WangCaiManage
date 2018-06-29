@@ -1,6 +1,9 @@
 package com.wangcai.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity(name = "t_album")
 public class Album {
@@ -19,9 +22,7 @@ public class Album {
     private Integer price;//从分开始
 
     private Integer popularty;
-    @OneToOne
     private Images images;
-    @OneToMany
     private AlbumToLable albumToLable;
 
     public Integer getId() {
