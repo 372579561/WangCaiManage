@@ -6,8 +6,7 @@ function fnSuccess(msg) {
         if (vm.checked)
         {
             SaveCookie();
-            window.location.href = "/home/homePage";
-            $('home')[0].click();
+            $('#home')[0].click();
         }
     }
     else
@@ -132,10 +131,8 @@ function SubmitTest() {
 
     $.ajax({
         type:"post",
-        //contentType:"application/json; charset=utf-8",
         url:"/login/login",
         data:params,
-        //dataType:"json",
         timeout:3000,
         success:function (msg) {
             console.log(msg);
