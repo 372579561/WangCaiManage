@@ -22,8 +22,6 @@ public class Album {
     private Integer price;//从分开始
 
     private Integer popularty;
-    private Images images;
-    private AlbumToLable albumToLable;
 
     public Integer getId() {
         return id;
@@ -81,19 +79,4 @@ public class Album {
         this.popularty = popularty;
     }
 
-    public Images getImages() {
-        return images;
-    }
-
-    public void setImages(Images images) {
-        this.images = images;
-    }
-
-    public AlbumToLable getAlbumToLable() {
-        return albumToLable;
-    }
-
-    public void setAlbumToLable(AlbumToLable albumToLable) {
-        this.albumToLable = albumToLable;
-    }
 }
