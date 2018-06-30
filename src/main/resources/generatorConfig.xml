@@ -32,16 +32,16 @@
         <!-- 这个插件用来在XXXExample类中生成大小写敏感的LIKE方法
             （插件本身用处不大，但是我们可以通过这个插件学习给XXXExample类添加额外的方法）
         -->
-        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+        <!--<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />-->
 
         <!-- 这个插件可以使用正则表达式的方式来重命名生成的XXXExample类，
             通过配置 searchString和replaceString属性来完成
             （这个实现原理请参考MBG配置文件中的columnRenamingRule元素）
         -->
-        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
-            <property name="searchString" value="Example$" />
-            <property name="replaceString" value="Criteria" />
-        </plugin>
+        <!--<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">-->
+            <!--<property name="searchString" value="Example$" />-->
+            <!--<property name="replaceString" value="Criteria" />-->
+        <!--</plugin>-->
 
         <!-- 这个插件可以生成一个新的selectByExample方法，这个方法可以接受一个RowBounds参数，
            主要用来实现分页（当然，我们后面会生成我们自己的分页查询函数），
@@ -49,7 +49,7 @@
            Mapper中会加入一个新的方法：
            selectByExampleWithRowbounds(XxxExample example, RowBounds rowBounds)
         -->
-        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <!--<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>-->
 
         <!-- 是否去除自动生成的注释 true：是 ： false:否  -->
         <commentGenerator>
@@ -86,7 +86,7 @@
             targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
             targetProject：目标项目，指定一个存在的目录java下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
          -->
-        <javaModelGenerator targetPackage="common.pojo" targetProject="D:\\common-util\common-util-api\src\main\">
+        <javaModelGenerator targetPackage="com.wangcai.model" targetProject="D:\\common-util\common-util-api\src\main\">
             <!--  for MyBatis3/MyBatis3Simple
                              自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter；
             <property name="constructorBased" value="false"/>
@@ -115,12 +115,12 @@
 
 
         <!--对应的mapper.xml文件  -->
-        <sqlMapGenerator targetPackage="mapping" targetProject="D:\common-util\common-util-api\src\main\resources">
+        <sqlMapGenerator targetPackage="mapping" targetProject="D:\\common-util\common-util-api\src\main\">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 对应的Mapper接口类文件 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="common.dao" targetProject="D:\common-util\common-util-api\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wangcai.dao" targetProject="D:\\common-util\common-util-api\src\main\">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
@@ -144,10 +144,10 @@
             15，delimitAllColumns：设置是否所有生成的SQL中的列名都使用标识符引起来。默认为false，delimitIdentifiers参考context的属性
 
          -->
-        <table tableName="t_lable" domainObjectName="Lable"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
+        <table tableName="t_album" domainObjectName="Album"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
             <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，
                比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
             <property name="useActualColumnNames" value="false" />

@@ -30,9 +30,7 @@ public class SessionFilter implements javax.servlet.Filter {
         List<String> noFilter = new ArrayList<>();
         String uri = request.getRequestURI();
         Boolean doFilter = true;
-        if (uri.contains("/js/") || uri.contains("/images/")||uri.contains("/css/")) {
-            doFilter = false;
-        }
+        if (uri.contains("/js/") || uri.contains("/images/")||uri.contains("/css/")) doFilter = false;
         noFilter.add("/login/loginPage");
         noFilter.add("/login/login");
         for (String noF : noFilter) {

@@ -1,8 +1,12 @@
 package com.wangcai.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
-
+@Table(name = "t_lable")
+@Entity
 public class Lable implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String labelName;

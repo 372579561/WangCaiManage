@@ -29,7 +29,6 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ResponseBody
     public String login(User user, HttpSession session) {
         User dataUser = userRepository.findByUserName(user.getUserName());
         if (dataUser != null && dataUser.getPassword().equals(user.getPassword())) {
@@ -37,9 +36,9 @@ public class LoginController {
             Date date = new Date();
             dataUser.setLastTime(date);
             userRepository.save(dataUser);
-            return "success";
+            return "homePage";
         }
-        return "fail";
+        return "loginPage";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)

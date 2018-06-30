@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ImagesRepository extends JpaRepository<Images,Integer> {
      List<Images> findByStatus(Integer status);
+     
 }
