@@ -4,9 +4,7 @@ import com.wangcai.model.User;
 import com.wangcai.constants.Constants;
 import com.wangcai.dao.UserRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -29,6 +27,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
     public String login(User user, HttpSession session) {
         User dataUser = userRepository.findByUserName(user.getUserName());
         if (dataUser != null && dataUser.getPassword().equals(user.getPassword())) {
@@ -36,9 +35,9 @@ public class LoginController {
             Date date = new Date();
             dataUser.setLastTime(date);
             userRepository.save(dataUser);
-            return "homePage";
+            return "success";
         }
-        return "loginPage";
+        return "fail";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
