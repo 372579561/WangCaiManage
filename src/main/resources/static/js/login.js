@@ -8,6 +8,7 @@ function fnSuccess(msg) {
             SaveCookie();
         }
         $('#home')[0].click();
+        console.log('sss');
     }
     else
     {
