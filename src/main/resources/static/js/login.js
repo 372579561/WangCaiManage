@@ -6,8 +6,8 @@ function fnSuccess(msg) {
         if (vm.checked)
         {
             SaveCookie();
-            $('#home')[0].click();
         }
+        $('#home')[0].click();
     }
     else
     {
